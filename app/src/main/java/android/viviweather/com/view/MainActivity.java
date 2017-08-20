@@ -1,7 +1,8 @@
-package android.viviweather.com.viviweather;
+package android.viviweather.com.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.viviweather.com.viviweather.R;
 
 public class MainActivity extends AppCompatActivity {
 
