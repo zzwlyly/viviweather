@@ -1,24 +1,28 @@
-package android.viviweather.com.view.fragment;
+package com.viviweather.android.view.fragment;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.viviweather.com.db.City;
-import android.viviweather.com.db.County;
-import android.viviweather.com.db.Province;
-import android.viviweather.com.util.HttpUtil;
-import android.viviweather.com.util.Utility;
-import android.viviweather.com.viviweather.R;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.viviweather.android.R;
+import com.viviweather.android.db.City;
+import com.viviweather.android.db.County;
+import com.viviweather.android.db.Province;
+import com.viviweather.android.util.Constant;
+import com.viviweather.android.util.HttpUtil;
+import com.viviweather.android.util.Utility;
+import com.viviweather.android.view.WeatherActivity;
 
 import org.litepal.crud.DataSupport;
 
@@ -104,6 +108,12 @@ public class ChooseAreaFragment extends Fragment {
                 } else if (currentLevel == LEVEL_CITY) {
                     selectedCity = mCityList.get(position);
                     queryCounties();
+                } else if (currentLevel == LEVEL_COUNTY) {
+                    String weatherId = mCountyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id", weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
@@ -136,8 +146,7 @@ public class ChooseAreaFragment extends Fragment {
             mListView.setSelection(0);
             currentLevel = LEVEL_PROVINCE;
         } else {
-            String address = "http://guolin.tech/api/china";
-            queryFromServer(address, "province");
+            queryFromServer(Constant.PROVINCE, "province");
 
         }
     }
@@ -156,7 +165,7 @@ public class ChooseAreaFragment extends Fragment {
             currentLevel = LEVEL_CITY;
         } else {
             int provinceCode = selectedProvince.getProvinceCode();
-            String address = "http://guolin.tech/api/china/" + provinceCode;
+            String address = Constant.PROVINCE + provinceCode;
             queryFromServer(address, "city");
         }
     }
@@ -176,7 +185,7 @@ public class ChooseAreaFragment extends Fragment {
         } else {
             int provinceCode = selectedProvince.getProvinceCode();
             int cityCode = selectedCity.getCityCode();
-            String address = "http://guolin.tech/api/china/" + provinceCode + "/" + cityCode;
+            String address = Constant.PROVINCE + provinceCode + "/" + cityCode;
             queryFromServer(address, "county");
         }
     }

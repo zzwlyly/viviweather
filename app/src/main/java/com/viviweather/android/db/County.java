@@ -1,4 +1,4 @@
-package android.viviweather.com.db;
+package com.viviweather.android.db;
 
 import org.litepal.crud.DataSupport;
 

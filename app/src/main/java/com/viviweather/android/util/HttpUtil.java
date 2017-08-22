@@ -1,4 +1,4 @@
-package android.viviweather.com.util;
+package com.viviweather.android.util;
 
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;

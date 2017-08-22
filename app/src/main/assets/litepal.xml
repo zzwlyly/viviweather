@@ -3,8 +3,8 @@
     <dbname value="vivi_weather" />
     <version value="1" />
     <list>
-        <mapping class="android.viviweather.com.db.Province" />
-        <mapping class="android.viviweather.com.db.City" />
-        <mapping class="android.viviweather.com.db.County" />
+        <mapping class="com.viviweather.android.db.Province" />
+        <mapping class="com.viviweather.android.db.City" />
+        <mapping class="com.viviweather.android.db.County" />
     </list>
 </litepal>

@@ -1,4 +1,4 @@
-package android.viviweather.com.viviweather;
+package com.viviweather.android.viviweather;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
