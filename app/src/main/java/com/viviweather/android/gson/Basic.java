@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * 类名:   Basic
  *
- * 创建者:   邹子威
+ * 创建者:   zzw
  *
  * 创建时间:  2017/8/22 11:07
  *

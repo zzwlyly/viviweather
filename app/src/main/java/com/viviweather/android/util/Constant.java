@@ -4,7 +4,7 @@ package com.viviweather.android.util;
  *
  * 类名:   Constant
  *
- * 创建者:   邹子威
+ * 创建者:   zzw
  *
  * 创建时间:  2017/8/22 15:31
  *

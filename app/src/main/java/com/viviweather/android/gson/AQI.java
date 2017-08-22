@@ -3,7 +3,7 @@ package com.viviweather.android.gson;
 /**
  * 类名:   AQI
  * <p>
- * 创建者:   邹子威
+ * 创建者:   zzw
  * <p>
  * 创建时间:  2017/8/22 11:11
  * <p>

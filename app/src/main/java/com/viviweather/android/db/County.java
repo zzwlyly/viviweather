@@ -6,7 +6,7 @@ import org.litepal.crud.DataSupport;
  *
  * 类名:   County
  *
- * 创建者:   邹子威
+ * 创建者:   zzw
  *
  * 创建时间:  2017/8/20 17:52
  *

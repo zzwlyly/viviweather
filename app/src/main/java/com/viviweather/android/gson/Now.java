@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * 类名:   Now
  * <p>
- * 创建者:   邹子威
+ * 创建者:   zzw
  * <p>
  * 创建时间:  2017/8/22 11:11
  * <p>

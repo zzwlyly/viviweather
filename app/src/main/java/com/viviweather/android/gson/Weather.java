@@ -8,7 +8,7 @@ import java.util.List;
  *
  * 类名:   Weather
  *
- * 创建者:   邹子威
+ * 创建者:   zzw
  *
  * 创建时间:  2017/8/22 11:34
  *
