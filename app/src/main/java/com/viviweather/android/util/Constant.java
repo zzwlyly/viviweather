@@ -1,7 +1,15 @@
 package com.viviweather.android.util;
 
 /**
- * Created by lenovo on 2017/8/22.
+ *
+ * 类名:   Constant
+ *
+ * 创建者:   邹子威
+ *
+ * 创建时间:  2017/8/22 15:31
+ *
+ * 描述：    数据链接
+ *
  */
 
 public class Constant {
