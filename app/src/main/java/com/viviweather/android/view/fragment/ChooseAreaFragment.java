@@ -21,6 +21,7 @@ import com.viviweather.android.db.County;
 import com.viviweather.android.db.Province;
 import com.viviweather.android.util.Constant;
 import com.viviweather.android.util.HttpUtil;
+import com.viviweather.android.util.LogUtils;
 import com.viviweather.android.util.Utility;
 import com.viviweather.android.view.MainActivity;
 import com.viviweather.android.view.WeatherActivity;
@@ -114,6 +115,7 @@ public class ChooseAreaFragment extends Fragment {
                     if (getActivity() instanceof MainActivity) {
                         Intent intent = new Intent(getActivity(), WeatherActivity.class);
                         intent.putExtra("weather_id", weatherId);
+                        LogUtils.d("WeatherActivity","putExatra weatherId = " + weatherId);
                         startActivity(intent);
                         getActivity().finish();
                     } else if (getActivity() instanceof WeatherActivity) {
@@ -121,6 +123,8 @@ public class ChooseAreaFragment extends Fragment {
                         activity.mDrawerLayout.closeDrawers();
                         activity.mSwipeRefresh.setRefreshing(true);
                         activity.requestWeater(weatherId);
+
+                        LogUtils.d("WeatherActivity","getActivity() instanceof WeatherActivity = " + weatherId);
                     }
                 }
             }

@@ -26,6 +26,7 @@ import com.viviweather.android.gson.Weather;
 import com.viviweather.android.service.AutoUpdateService;
 import com.viviweather.android.util.Constant;
 import com.viviweather.android.util.HttpUtil;
+import com.viviweather.android.util.LogUtils;
 import com.viviweather.android.util.Utility;
 
 import java.io.IOException;
@@ -96,17 +97,20 @@ public class WeatherActivity extends AppCompatActivity {
             // 如果有缓存直接解析天气数据
             Weather weather = Utility.handleWeatherResponse(weatherString);
             mWeatherId = weather.basic.weatherId;
+            LogUtils.d("WeatherActivity","缓存 mWeatherId = " + mWeatherId);
             showWeatherInfo(weather);
         } else {
             // 没有缓存,去服务器查询天气状况
             mWeatherId = getIntent().getStringExtra("weather_id");
             mWeatherLayout.setVisibility(View.INVISIBLE);
             requestWeater(mWeatherId);
+            LogUtils.d("WeatherActivity","getIntent mWeatherId = " + mWeatherId);
         }
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 requestWeater(mWeatherId);
+                LogUtils.d("WeatherActivity","Refresh mWeatherId = " + mWeatherId);
             }
         });
 
@@ -133,19 +137,24 @@ public class WeatherActivity extends AppCompatActivity {
     /**
      * 根据天气id从服务器请求查询城市的天气信息
      */
-    public void requestWeater(String weatherId) {
+    public void requestWeater(final String weatherId) {
+        LogUtils.d("WeatherActivity","requestWeater = " + weatherId);
         String url = Constant.WEATHER_URL + weatherId + Constant.WEATHER_KEY;
         HttpUtil.sendOkHttpRequest(url, new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseText = response.body().string();
+                String s = response.body().toString();
                 final Weather weather = Utility.handleWeatherResponse(responseText);
+                LogUtils.e("WeatherActivity","Weather [ responseText ]>>" + responseText);
+                LogUtils.e("WeatherActivity","Weather [ s ] >>" + s);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         if (weather != null && "ok".equals(weather.status)) {
                             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this).edit();
                             editor.putString("weather", responseText).apply();
+                            mWeatherId = weather.basic.weatherId;
                             showWeatherInfo(weather);
                         } else {
                             Toast.makeText(WeatherActivity.this, "获取天气信息失败", Toast.LENGTH_SHORT).show();
